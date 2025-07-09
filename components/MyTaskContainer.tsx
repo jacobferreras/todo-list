@@ -7,6 +7,7 @@ const MyTaskContainer = () => {
   const [tasks, setTasks] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [totalTasks, setTotalTasks] = useState(0);
+  const [totalCompletedTasks, setTotalCompletedTasks] = useState(0);
   const [completedTasks, setCompletedTasks] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +25,20 @@ const MyTaskContainer = () => {
     const newTasks = tasks.filter((_, i) => i !== index);
     setTasks(newTasks);
     setTotalTasks(totalTasks - 1);
+  };
+
+  const handleCompleteTask = (index: number) => {
+    const newTasks = tasks.map((task, i) => {
+      if (i === index) {
+        return task;
+      }
+      return task;
+    });
+    setTasks(newTasks);
+    setCompletedTasks(!completedTasks);
+    setTotalCompletedTasks(
+      completedTasks ? totalCompletedTasks - 1 : totalCompletedTasks + 1
+    );
   };
 
   return (
@@ -49,7 +64,11 @@ const MyTaskContainer = () => {
                     key={index}
                     className="flex justify-between items-center bg-gray-800 p-3 rounded-lg"
                   >
-                    <input type="checkbox" className="checkbox" />
+                    <input
+                      type="checkbox"
+                      className="checkbox"
+                      onClick={() => handleCompleteTask(index)}
+                    />
                     <span className="text-white">{task}</span>
                     <button
                       className="btn btn-sm btn-error"
@@ -65,6 +84,7 @@ const MyTaskContainer = () => {
 
           <div>
             <h1>Total task: {totalTasks}</h1>
+            <h1>Total completed task: {totalCompletedTasks}</h1>
           </div>
         </div>
       </div>
