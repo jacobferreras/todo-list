@@ -37,7 +37,9 @@ const MyTaskContainer = () => {
     setTasks(newTasks);
     setCompletedTasks(!completedTasks);
     setTotalCompletedTasks(
-      completedTasks ? totalCompletedTasks - 1 : totalCompletedTasks + 1
+      completedTasks === true
+        ? totalCompletedTasks + 1
+        : totalCompletedTasks - 1
     );
   };
 
