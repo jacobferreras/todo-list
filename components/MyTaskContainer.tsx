@@ -35,11 +35,9 @@ const MyTaskContainer = () => {
       return task;
     });
     setTasks(newTasks);
-    setCompletedTasks(!completedTasks);
+    setCompletedTasks(completedTasks);
     setTotalCompletedTasks(
-      completedTasks === true
-        ? totalCompletedTasks + 1
-        : totalCompletedTasks - 1
+      completedTasks ? totalCompletedTasks - 1 : totalCompletedTasks + 1
     );
   };
 
@@ -64,7 +62,7 @@ const MyTaskContainer = () => {
                 {tasks.map((task, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center bg-gray-800 p-3 rounded-lg"
+                    className="flex justify-between items-center bg-red-800 p-3 rounded-lg"
                   >
                     <input
                       type="checkbox"
