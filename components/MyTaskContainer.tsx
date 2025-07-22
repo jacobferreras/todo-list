@@ -16,6 +16,19 @@ const MyTaskContainer = () => {
     const savedTotalCompletedTasks = localStorage.getItem(
       "totalCompletedTasks"
     );
+
+    if (savedTasks) {
+      const parsedTasks = JSON.parse(savedTasks);
+      setTasks(parsedTasks);
+    }
+
+    if (savedTotalTasks) {
+      setTotalTasks(parseInt(savedTotalTasks));
+    }
+
+    if (savedTotalCompletedTasks) {
+      setTotalCompletedTasks(parseInt(savedTotalCompletedTasks));
+    }
   }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
