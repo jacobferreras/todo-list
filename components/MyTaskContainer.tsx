@@ -1,7 +1,7 @@
 "use client";
 import Button from "./Button";
 import Inputfield from "./Inputfield";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MyTaskContainer = () => {
   const [tasks, setTasks] = useState<string[]>([]);
@@ -9,6 +9,14 @@ const MyTaskContainer = () => {
   const [totalTasks, setTotalTasks] = useState(0);
   const [totalCompletedTasks, setTotalCompletedTasks] = useState(0);
   const [completedTasks, setCompletedTasks] = useState(false);
+
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    const savedTotalTasks = localStorage.getItem("totalTasks");
+    const savedTotalCompletedTasks = localStorage.getItem(
+      "totalCompletedTasks"
+    );
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -62,7 +70,7 @@ const MyTaskContainer = () => {
                 {tasks.map((task, index) => (
                   <li
                     key={index}
-                    className="flex justify-between items-center bg-red-800 p-3 rounded-lg"
+                    className="flex justify-between items-center bg-gray-800  p-3 rounded-lg"
                   >
                     <input
                       type="checkbox"
