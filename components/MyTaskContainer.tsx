@@ -31,6 +31,12 @@ const MyTaskContainer = () => {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem("totalTasks", totalTasks.toString());
+    localStorage.setItem("totalCompletedTasks", totalCompletedTasks.toString());
+  }, [tasks, totalTasks, totalCompletedTasks]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
