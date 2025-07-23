@@ -16,6 +16,7 @@ const MyTaskContainer = () => {
     const savedTotalCompletedTasks = localStorage.getItem(
       "totalCompletedTasks"
     );
+    const savedCompletedTasks = localStorage.getItem("completedTasks");
 
     if (savedTasks) {
       const parsedTasks = JSON.parse(savedTasks);
@@ -29,13 +30,18 @@ const MyTaskContainer = () => {
     if (savedTotalCompletedTasks) {
       setTotalCompletedTasks(parseInt(savedTotalCompletedTasks));
     }
+
+    if (savedCompletedTasks) {
+      setCompletedTasks(JSON.parse(savedCompletedTasks));
+    }
   }, []);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     localStorage.setItem("totalTasks", totalTasks.toString());
     localStorage.setItem("totalCompletedTasks", totalCompletedTasks.toString());
-  }, [tasks, totalTasks, totalCompletedTasks]);
+    localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
+  }, [tasks, totalTasks, totalCompletedTasks, completedTasks]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
